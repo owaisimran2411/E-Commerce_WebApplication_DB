@@ -1,0 +1,34 @@
+<%- include('partials/header.ejs') -%>
+<div class="container">
+    <br>
+    <h1>External Products</h1><hr><br>
+    <div class="row">
+        
+        <% data.forEach(element => { %>
+            
+            <div class="col-lg-3" style="margin-bottom: 10px;">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= element.PRODUCT_NAME %></h5>
+                        <p class="card-text"><%= element.PRODUCT_DESCRIPTION %> </p>  
+                        <br>
+                        <p class="card-text">category: <%= element.PRODUCT_TYPE %> </p>
+                        <p class="card-text">Seller Name: <%= element.FIRST_NAME %>  <%= element.LAST_NAME %> </p>
+                        <h6 class="card-text">Price: <%= element.PRODUCT_PRICE %> </h6>
+                        <% if (element.POSTED_BY != userID) { %>
+                            <% if (element.PRODUCT_PRICE_TYPE === 'bidding price') { %>
+                                <a href="/create-bid/<%= element.PRODUCT_ID %> " class="btn btn-outline-danger"> Create Bid </a>
+                            <% } %>
+                        <% } %>
+                        <br><br>
+                        <a href="/view-profile-seller/<%= element.POSTED_BY %> " class="btn btn-outline-success"> View Seller Profile</a>
+                    </div>
+                    
+                </div>
+            </div>
+            
+        <% }) %>
+        
+    </div>
+</div>
+<%- include('partials/footer.ejs') -%>

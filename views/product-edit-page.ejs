@@ -1,0 +1,92 @@
+<%- include('partials/admin-header.ejs') -%>
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="text-center">Update PRODUCT</h1>
+                        <hr>
+                       <div class="form-group">
+                        <form method="POST">
+                            
+                            <label>Product Name</label>
+                            <input type="text" name="productName" class="form-control" value="<%= productName %>" required>
+
+                            <label>Product Description</label>
+                            <textarea name="productDescription" class="form-control" required><%= productDescription %></textarea>
+
+                            <label>Product Type</label>
+                            <select name="productType" class="form-control" required>
+                                <% if (productType == 'cd') { %>
+                                    <option value="console">Gaming Console</option>
+                                    <option value="cd" selected>Gaming CD</option>
+                                <% } %>
+                                <% if (productType == 'console') { %>
+                                    <option value="console" selected>Gaming Console</option>
+                                    <option value="cd">Gaming CD</option>
+                                <% } %>
+                            </select>
+
+                            <label>Product Price</label>
+                            <input type="number" name="productPrice" class="form-control" required value="<%= productPrice %>">
+
+                            <label>Posted by</label>
+                            <input type="text" name="productPostedBy" class="form-control" value="<%= accountID %>" readonly>
+
+                            <br>
+                            <div class="text-center">
+                                <button class="btn btn-outline-primary btn-lg" type="submit">Update Product</button>
+                            </div>
+                        </form>
+    </div>
+                        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+        <script>
+            $('document').ready(function() {
+                   $('#btn').click(function(){
+                       alert(' Updated')
+                   })
+               })           
+       </script>
+<div class="container-fluid">
+    <br>
+    <!-- <div class="form-group">
+        <form method="POST">
+            <h1 class="text-center">ADD NEW PRODUCT</h1>
+            <label>Product Name</label>
+            <input type="text" name="productName" class="form-control" value="<%= productName %>" required>
+
+            <label>Product Description</label>
+            <textarea name="productDescription" class="form-control" required><%= productDescription %></textarea>
+
+            <label>Product Type</label>
+            <select name="productType" class="form-control" required>
+                <% if (productType == 'cd') { %>
+                    <option value="console">Gaming Console</option>
+                    <option value="cd" selected>Gaming CD</option>
+                <% } %>
+                <% if (productType == 'console') { %>
+                    <option value="console" selected>Gaming Console</option>
+                    <option value="cd">Gaming CD</option>
+                <% } %>
+            </select>
+
+            <label>Product Price</label>
+            <input type="number" name="productPrice" class="form-control" required value="<%= productPrice %>">
+
+            <label>Posted by</label>
+            <input type="text" name="productPostedBy" class="form-control" value="<%= accountID %>" readonly>
+
+            <br>
+            <div class="text-center">
+                <button class="btn btn-outline-primary btn-lg" type="submit">Update Product</button>
+            </div>
+        </form>
+    </div> -->
+</div>
+<%- include('partials/footer.ejs') -%>

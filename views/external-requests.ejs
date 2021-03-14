@@ -1,0 +1,174 @@
+<%- include('partials/admin-header.ejs') -%> 
+
+<div id="page-content-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg">
+               
+<div class="container ">
+    <br>
+    <h1 class="text-center">Manage Ad Request</h1>
+    <hr>
+    <br>
+    <h3>Pending Apporval</h3>
+    <hr>
+    <table class="table table-responsive table-dark">
+        <thead>
+            <th>Request Id</th>
+            <th>Product Name</th>
+            <th>Product Description</th>
+            <th>Product Type</th>
+            <th>Product Price</th>
+            <th>Product Price Type</th>
+            <th>Product Posted By</th>
+            <th>Ad Status</th>
+            <th>Action</th>
+        </thead>
+        <tbody>
+            <% data.forEach(element => { %>
+                <% if (element.AD_STATUS === 'pending approval') { %>
+                    <tr>
+                        <td><%= element.PRODUCT_ID %></td>
+                        <td><%= element.PRODUCT_NAME %></td>
+                        <td><%= element.PRODUCT_DESCRIPTION %></td>
+                        <td><%= element.PRODUCT_TYPE %></td>
+                        <td>Rs. <%= element.PRODUCT_PRICE %></td>
+                        <td><%= element.PRODUCT_PRICE_TYPE %></td>
+                        <td><%= element.POSTED_BY %> </td>
+                        <td><%= element.AD_STATUS %></td>
+                        <td>
+                            <form action="/admin/approve-order/<%= element.PRODUCT_ID %>" method="POST">
+                                <input type="checkbox" onchange="this.form.submit()">
+                            </form>
+                        </td>
+                    </tr>
+                <% } %>
+            <% }) %>
+        </tbody>
+    </table>
+
+    <br>
+    <h3>Approved Ads</h3>
+    <hr>
+    <table class="table table-responsive table-dark">
+        <thead>
+            <th>Request Id</th>
+            <th>Product Name</th>
+            <th>Product Description</th>
+            <th>Product Type</th>
+            <th>Product Price</th>
+            <th>Product Price Type</th>
+            <th>Product Posted By</th>
+            <th>Ad Status</th>
+            <th>Action</th>
+        </thead>
+        <tbody>
+            <% data.forEach(element => { %>
+                <% if (element.AD_STATUS === 'approved') { %>
+                    <tr>
+                        <td><%= element.PRODUCT_ID %></td>
+                        <td><%= element.PRODUCT_NAME %></td>
+                        <td><%= element.PRODUCT_DESCRIPTION %></td>
+                        <td><%= element.PRODUCT_TYPE %></td>
+                        <td>Rs. <%= element.PRODUCT_PRICE %></td>
+                        <td><%= element.PRODUCT_PRICE_TYPE %></td>
+                        <td><%= element.POSTED_BY %> </td>
+                        <td><%= element.AD_STATUS %></td>
+                        <td>
+                            <form action="/admin/disapprove-order/<%= element.PRODUCT_ID %>" method="POST">
+                                <input type="checkbox" onchange="this.form.submit()">
+                            </form>
+                        </td>
+                    </tr>
+                <% } %>
+            <% }) %>
+        </tbody>
+    </table>
+</div>
+                <!-- <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a> -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 
+<div class="container text-center">
+    <br>
+    <h1>Manage Ad Request</h1>
+    <hr>
+    <br>
+    <h3>Pending Apporval</h3>
+    <hr>
+    <table class="table">
+        <thead>
+            <th>Request Id</th>
+            <th>Product Name</th>
+            <th>Product Description</th>
+            <th>Product Type</th>
+            <th>Product Price</th>
+            <th>Product Price Type</th>
+            <th>Product Posted By</th>
+            <th>Ad Status</th>
+            <th>Action</th>
+        </thead>
+        <tbody>
+            <% data.forEach(element => { %>
+                <% if (element.AD_STATUS === 'pending approval') { %>
+                    <tr>
+                        <td><%= element.PRODUCT_ID %></td>
+                        <td><%= element.PRODUCT_NAME %></td>
+                        <td><%= element.PRODUCT_DESCRIPTION %></td>
+                        <td><%= element.PRODUCT_TYPE %></td>
+                        <td>Rs. <%= element.PRODUCT_PRICE %></td>
+                        <td><%= element.PRODUCT_PRICE_TYPE %></td>
+                        <td><%= element.POSTED_BY %> </td>
+                        <td><%= element.AD_STATUS %></td>
+                        <td>
+                            <form action="/admin/approve-order/<%= element.PRODUCT_ID %>" method="POST">
+                                <input type="checkbox" onchange="this.form.submit()">
+                            </form>
+                        </td>
+                    </tr>
+                <% } %>
+            <% }) %>
+        </tbody>
+    </table>
+
+    <br>
+    <h3>Approved Ads</h3>
+    <hr>
+    <table class="table">
+        <thead>
+            <th>Request Id</th>
+            <th>Product Name</th>
+            <th>Product Description</th>
+            <th>Product Type</th>
+            <th>Product Price</th>
+            <th>Product Price Type</th>
+            <th>Product Posted By</th>
+            <th>Ad Status</th>
+            <th>Action</th>
+        </thead>
+        <tbody>
+            <% data.forEach(element => { %>
+                <% if (element.AD_STATUS === 'approved') { %>
+                    <tr>
+                        <td><%= element.PRODUCT_ID %></td>
+                        <td><%= element.PRODUCT_NAME %></td>
+                        <td><%= element.PRODUCT_DESCRIPTION %></td>
+                        <td><%= element.PRODUCT_TYPE %></td>
+                        <td>Rs. <%= element.PRODUCT_PRICE %></td>
+                        <td><%= element.PRODUCT_PRICE_TYPE %></td>
+                        <td><%= element.POSTED_BY %> </td>
+                        <td><%= element.AD_STATUS %></td>
+                        <td>
+                            <form action="/admin/disapprove-order/<%= element.PRODUCT_ID %>" method="POST">
+                                <input type="checkbox" onchange="this.form.submit()">
+                            </form>
+                        </td>
+                    </tr>
+                <% } %>
+            <% }) %>
+        </tbody>
+    </table>
+</div> -->
+<%- include('partials/footer.ejs') -%> 

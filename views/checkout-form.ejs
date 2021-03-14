@@ -1,0 +1,80 @@
+<%- include('partials/header.ejs') -%>
+    <div class="container text-center">
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8">
+                <div class="form-group">
+                    <form method="POST" class="text-left">
+                        <h3 class="text-center">CONTACT DETAILS</h3>
+                        <hr>
+                        
+                        <label>Phone Number</label>
+                        <input type="text" name="userPhoneNumber" value="<%= customerResult.PHONE_NUMBER %>" class="form-control" required>
+                        
+                        <label>Email Address</label>
+                        <input type="email" name="userEmailAddress" value="<%= customerResult.EMAIL_ADDRESS %>" class="form-control" required readonly>
+
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label>First Name</label>
+                                <input type="text" name="userFirstName" value="<%= customerResult.FIRST_NAME %>" class="form-control" required readonly>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <label>Last Name</label>
+                                <input type="text" name="userLastName" value="<%= customerResult.LAST_NAME %>" class="form-control" required readonly>
+                            </div>
+                        </div>
+                        <br>
+                        <h3 class="text-center">DELIVERY INFORMATION</h3>
+                        <hr>
+                        <label>Delivery Address</label>
+                        <textarea name="userAddress" required class="form-control"><%= customerResult.ADDRESS %></textarea>
+                    </form>
+
+                    <table class="table table-dark">
+                        <br>
+                        <h3>YOUR ORDER SUMMARY</h3>
+                        <hr>
+                        <thead>
+                            <th>Item ID</th>
+                            <th>Item Name</th>
+                            <th>Item Price</th>
+                            <th>Item Quantity</th>
+                            <th>Item Total Price</th>
+                        </thead>
+                        <tbody>
+                            <% orderData.forEach(element => { %>
+                                <tr>
+                                    <td><%= element.PRODUCT_ID %> </td>
+                                    <td><%= element.PRODUCT_NAME %> </td>
+                                    <td>Rs. <%= element.PRODUCT_INDIVIDUAL_PRICE %> </td>
+                                    <td><%= element.PRODUCT_QUANTITY %> </td>
+                                    <td>Rs. <%= element.PRODUCT_TOTAL_PRICE %> </td>
+                                </tr>
+                            <% }) %>
+                        </tbody>
+                        
+                    </table>
+                    <h4>Your Total Bill is: <%= totalBill %> </h4>
+                    <br>
+                    <div class="text-center">
+                        <form action="/order-confirmation/<%= totalBill %>" method="POST">
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-lg btn-outline-danger">Place Order</button>
+                            </div>
+                        </form>
+                        <!-- <a class="btn btn-lg btn-outline-danger" href="/order-confirmation/<%= totalBill %>">Place Order</a> -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
+        
+    </div>
+ 
+    
+<%- include('partials/footer.ejs') -%>

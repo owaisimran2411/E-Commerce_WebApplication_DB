@@ -1,0 +1,128 @@
+--	table 1
+--create table admin_accounts(
+--    admin_username varchar2(50),
+--    admin_password varchar2(50),
+--    primary key(admin_username)
+--);
+
+-- 	table 2
+--create table signup (
+--    USERNAME VARCHAR2(50) NOT NULL,
+--    USER_PASSWORD VARCHAR2(300) NOT NULL,
+--    EMAIL_ADDRESS VARCHAR2(50) UNIQUE NOT NULL,
+--    CNIC_NUMBER VARCHAR2(15) UNIQUE NOT NULL,
+--    FIRST_NAME VARCHAR2(20) NOT NULL,
+--    LAST_NAME VARCHAR2(20) NOT NULL,
+--    ADDRESS VARCHAR2(200) NOT NULL,
+--    QUESTION VARCHAR2(100) NOT NULL,
+--    ANSWER VARCHAR2(100) NOT NULL,
+--    PHONE_NUMBER VARCHAR2(20) NOT NULL,
+--    NEWSLETTER VARCHAR2(1) DEFAULT 'N',
+--    primary key(username)
+--);
+
+--	table 3
+--create table login(
+--    username varchar2(50),
+--    user_password varchar2(300),
+--    user_status varchar2(50) default 'active',
+--    foreign key(username) references signup(username) on delete cascade
+--);
+
+--	table 4
+--create table internalProductsList(
+--    product_id number generated as identity,
+--    product_name varchar2(50) not null,
+--    product_type varchar2(50) not null,
+--    product_description varchar2(300) not null,
+--    product_price number not null,
+--    posted_by varchar2(50) not null,
+--    product_rating number(1),
+--    primary key(product_id),
+--    foreign key(posted_by) references admin_accounts(admin_username) ON DELETE set null
+--);
+
+--	table 5
+create table customercart(
+--    cart_owner varchar2(50),
+--    product_id number,
+--    product_name varchar2(50),
+--    product_individual_price number,
+--    product_quantity number,
+--    product_total_price number,
+--    foreign key(cart_owner) references signup(username),
+--    foreign key(product_id) references internalproductslist(product_id) 
+--);
+
+--	table 6
+--create table orderdetails (
+--    order_id number generated as identity,
+--    customer_name varchar2(100) not null,
+--    order_amount number not null,
+--    order_date date not null,
+--    order_status varchar2(100),
+--    primary key(order_id)
+--);
+
+--	table 7
+--create table internalOrderInformation (
+--    order_id number,
+--    product_id number,
+--    product_name varchar2(50),
+--    product_individual_price number,
+--    product_quantity number,
+--    product_total_price number,
+--    foreign key(product_id) references internalproductslist(product_id),
+--    foreign key(order_id) references orderdetails(order_id)
+--);
+
+--	table 8
+--create table complaintrecord (
+--    order_id number,
+--    complaint_message varchar2(1000),
+--    complaint_status varchar2(100) default 'pending',
+--    admin_username varchar2(50),
+--    foreign key (order_id) references orderdetails(order_id),
+--    foreign key (admin_username) references admin_accounts (admin_username)
+--);
+
+--	table 9
+--create table internalProductRating(
+--    product_id number,
+--    rating_user varchar2(100),
+--    rating_value number,
+--    foreign key(product_id) references internalproductslist(product_id),
+--    foreign key(rating_user) references signup(username)
+--);
+
+--	table 10
+--create table externalProducts(
+--    product_id number generated as identity,
+--    product_name varchar2(100),
+--    product_type varchar2(100),
+--    product_description varchar2(1000),
+--    product_price number,
+--    product_price_type varchar2(30),
+--    posted_by varchar2(100),
+--    ad_status varchar2(100) default 'pending approval',
+--    primary key (product_id),
+--    foreign key(posted_by) references signup(username)
+--);
+
+--	table 11
+--create table bidRecord(
+--    product_id number,
+--    bid_amount number,
+--    bidder_username varchar2(100),
+--    foreign key (product_id) references externalproducts(product_id),
+--    foreign key (bidder_username) references signup(username)
+--);
+
+--	table 12
+--create table commentsSeller(
+--    comment_message varchar2(2000),
+--    account_holder varchar2(100),
+--    commentor_account varchar2(100),
+--    foreign key (account_holder) references signup(username) on delete cascade,
+--    foreign key (commentor_account) references signup(username) on delete cascade
+--);

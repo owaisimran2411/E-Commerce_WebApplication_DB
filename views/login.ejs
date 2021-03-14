@@ -1,0 +1,28 @@
+<%- include('partials/header.ejs') -%>
+    <div class="container" >
+        <div class="form-group">
+            <h1>Login Page</h1><hr>
+            <form action="/login" method="POST">
+                <label>UserName: </label>
+                <input type="text" id="txtEmpName" onkeypress="return AvoidSpace(event)" placeholder="Username" name="uName" type="text" class="form-control" required>
+
+                <label>User Password: </label>
+                <input placeholder="userPassword" name="uPassword" type="password" class="form-control" required> 
+                
+                <br>
+                <div class="text-center">
+                    <button class="btn btn-outline-dark btn-lg" id="btn" type="submit">Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function AvoidSpace(event) {
+    var k = event ? event.which : window.event.keyCode;
+    if (k == 32) return false;      
+    }
+
+    </script>
+
+<%- include('partials/footer.ejs') -%>

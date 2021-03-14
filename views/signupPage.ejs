@@ -1,0 +1,147 @@
+
+
+<%- include('partials/header.ejs') -%>
+    <div class="container">
+        <div class="form-group">
+            <h1>Sign Up Page</h1>
+            <hr>
+            <form action="/sign-up" method="POST">
+                <label>Username: </label>
+                <input type="text" id="txtEmpName" onkeypress="return AvoidSpace(event)" name="username" id="username" class="form-control">
+                
+                <label>Password: </label>
+                <input minlength=7 type="password" name="password"  class="form-control">
+                
+                <label>Confirm Password: </label>
+                <input type="password" minlength="7" name="confirm_password"  class="form-control">
+                
+                <label>Email Address: </label>
+                <input type="email" id="txtEmpName" onkeypress="return AvoidSpace(event)" name="emailaddress"  class="form-control" id="email-address">
+                
+                <label>Address: </label>
+                <textarea name="address"  class="form-control"></textarea>
+                
+                <label>CNIC: </label>
+                <input type="text" name="cnic" pattern="[0-9]{5}-[0-9]{7}-[0-9]{1}"  class="form-control" id="cnic-number">
+                
+                <label>First Name: </label>
+                <input type="text" name="firstname"  class="form-control">
+                
+                <label>Last Name: </label>
+                <input type="text" name="lastname"  class="form-control">
+                
+                <label>Phone Number: </label>
+                <input type="text" name="contact"  class="form-control">
+                
+                <p>
+                    Please Select a Security Question <br>
+                    <select name = "securityQuestion" id="securityQuestion" required class="form-control">
+                        <option></option>
+                        <option value="mothername">What is/was your Mother Name?</option>
+                        <option value="petname">What is the name of your pet?</option>
+                        <option value="favoritecolor">What is your favorite color?</option>
+                    </select>
+                </p>
+                <label>Answer To Security Question: </label>
+                <input type="text" name="answer" class="form-control">
+                
+                <br>
+                <!-- <input type="checkbox" >
+                <label>Subscribe to our Newsletter</label> -->
+                
+                <div class="text-center">
+                   <!-- <a href="/sign-up"></a> -->
+                   <button type="submit" id="btn" class="btn btn-lg btn-outline-success">Sign Up</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        function AvoidSpace(event) {
+    var k = event ? event.which : window.event.keyCode;
+    if (k == 32) return false;      
+    }
+
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $('document').ready(function() {
+            $('#btn').click(function(){
+                alert('Thank you for your co-operation')
+            })
+        
+            // $('#username').on('blur', function() {
+            //     console.log("handler on username called");
+            // })
+            var username_state = false
+            var email_state = false
+            var cnic_state = false
+            $('#username').on('blur', function() {
+                var username = $('#username').val()
+                if(username == '') {
+                    username_state = false
+                    return
+                }
+                $.ajax( {
+                    url: 'check_username',
+                    type: 'post',
+                    dataType: 'html',
+                    data: {
+                        'username_check': 1,
+                        'username' : username,
+                    },
+                    success: function(response) {
+                        if (response ==  "taken") {
+                            alert('username already taken try using some other username')
+                            document.getElementById('username').value = ""
+                        }
+                    }
+                })
+            })
+            $('#email-address').on('blur', function() {
+                var email = $('#email-address').val()
+                if(email == '') {
+                    email_state = false
+                    return
+                }
+                $.ajax( {
+                    url: 'check_email',
+                    type: 'post',
+                    dataType: 'html',
+                    data: {
+                        'email_check': 1,
+                        'email' : email,
+                    },
+                    success: function(response) {
+                        if (response ==  "taken") {
+                            alert('email already taken try using some other email address')
+                            document.getElementById('email-address').value = ""
+                        }
+                    }
+                })
+            })
+            $('#cnic-number').on('blur', function() {
+                var cnic = $('#cnic-number').val()
+                if(cnic == '') {
+                    cnic_state = false
+                    return
+                }
+                $.ajax( {
+                    url: 'check_cnic',
+                    type: 'post',
+                    dataType: 'html',
+                    data: {
+                        'cnic_check': 1,
+                        'cnic' : cnic,
+                    },
+                    success: function(response) {
+                        if (response ==  "taken") {
+                            alert('cnic number already registered try using some other cnic number')
+                            document.getElementById('cnic-number').value = ""
+                        }
+                    }
+                })
+            })
+        })
+    </script>
+    

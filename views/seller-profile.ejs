@@ -1,0 +1,70 @@
+<%- include('partials/header.ejs') -%>
+<div class="container">
+    <br>
+    <div class="jumbotron">
+        <section>
+            <div class="container text-center">
+                <h5>Seller Information</h5>
+                <hr>
+                <p class="lead"><strong>Seller Name:</strong> <%= sellerInfo.FIRST_NAME %> <%= sellerInfo.LAST_NAME %> </p>
+                <p class="lead"><strong>Phone Number:</strong> <%= sellerInfo.PHONE_NUMBER %> </p>
+                <p class="lead"><strong>Email Address:</strong> <%= sellerInfo.EMAIL_ADDRESS %> </p>
+            </div>
+        </section>
+        <br>
+        <!-- comments about seller section -->
+        <section>
+            <div class="container text-center">
+                <h6>Comments About Seller</h6>
+                <hr>
+                <% comments.forEach(element => { %>
+                    <p class="lead">"<%= element.COMMENT_MESSAGE %>" - <small> <%= element.FIRST_NAME %>  <%= element.LAST_NAME %>  </small> </p>
+                <% }) %>                
+            </div>
+        </section>
+        <% if (loginID != sellerID) { %>
+            <div class="text-center">
+                <div class="container">
+                    <button class="btn btn-outline-danger" onclick="showCommentForm()"> Click Here To Add Comment</button>
+                    
+                    <div id="hiddenForm" style="display: none;">
+                        <div class="form-group text-left">
+                            <form method="POST">
+                                <label>Your Username</label>
+                                <input type="text" name="commentorID" class="form-control" readonly value="<%= loginID %>">
+                                <label>Comment Message</label>
+                                <textarea id="wordCount" name="commentMessage" onkeypress="countWords()" maxlength="2000" class="form-control"></textarea>
+                                <p class="text-right" id="counter">0/2000</p>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-outline-primary">Add Comment</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <% } %>
+    </div>
+</div>
+<script>
+     $('document').ready(function() {
+            $('#btn').click(function(){
+                alert('Thank you for your co-operation')
+            })
+        })  
+</script>
+<script>
+        
+    function countWords() {
+        var element = document.getElementById('wordCount')
+        var count = document.getElementById('counter')
+        
+        console.log(element.value.length);
+        count.innerHTML = element.value.length + 1 + "/2000"
+    }
+
+    function showCommentForm() {
+        document.getElementById('hiddenForm').style.display = "block"
+    }
+</script>
+<%- include('partials/footer.ejs') -%>

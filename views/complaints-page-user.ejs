@@ -1,0 +1,108 @@
+<%- include('partials/header.ejs') -%>
+
+<div id="page-content-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10">
+                <div class="container">
+                    <br>
+                    <h1 class="text-center">Manage Complaints</h1>
+                    <hr>
+                    <br>
+                    <h2 class="">Active Complaints</h2>
+                    <hr>
+                    <table class="table  table-dark text-center">
+                        <thead>
+                            <th >Order Id</th>
+                            <th>Complaint Message</th>
+                            <th>Complaint Status</th>
+                        </thead>
+                        <tbody>
+                            <% data.forEach(element => { %>
+                                <% if (element.COMPLAINT_STATUS == 'pending') { %>
+                                    <tr>
+                                        <td><%= element.ORDER_ID %> </td>
+                                        <td><%= element.COMPLAINT_MESSAGE %></td>
+                                        <td><%= element.COMPLAINT_STATUS %> </td>
+                                    </tr>
+                                <% } %>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                
+                    <br>
+                    <h2 class="">Resolved Complaints</h2>
+                    <hr>
+                    <table class="table  table-dark text-center">
+                        <thead>
+                            <th>Order Id</th>
+                            <th>Complaint Message</th>
+                            <th>Complaint Status</th>
+                        </thead>
+                        <tbody>
+                            <% data.forEach(element => { %>
+                                <% if (element.COMPLAINT_STATUS == 'resolved') { %>
+                                    <tr>
+                                        <td><%= element.ORDER_ID %> </td>
+                                        <td><%= element.COMPLAINT_MESSAGE %></td>
+                                        <td><%= element.COMPLAINT_STATUS %> </td>
+                                    </tr>
+                                <% } %>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a> -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <div class="container">
+    <br>
+    <h1 class="text-center">Manage Complaints</h1>
+    <hr>
+    <br>
+    <h2 class="">Active Complaints</h2>
+    <hr>
+    <table class="table table-responsive table-dark text-center">
+        <thead>
+            <th>Order Id</th>
+            <th>Complaint Message</th>
+            <th>Complaint Status</th>
+        </thead>
+        <tbody>
+            <% data.forEach(element => { %>
+                <% if (element.COMPLAINT_STATUS == 'pending') { %>
+                    <tr>
+                        <td><%= element.ORDER_ID %> </td>
+                        <td><%= element.COMPLAINT_MESSAGE %></td>
+                        <td><%= element.COMPLAINT_STATUS %> </td>
+                    </tr>
+                <% } %>
+            <% }) %>
+        </tbody>
+    </table>
+
+    <br>
+    <h2 class="">Resolved Complaints</h2>
+    <hr>
+    <table class="table table-responsive table-dark text-center">
+        <thead>
+            <th>Order Id</th>
+            <th>Complaint Message</th>
+            <th>Complaint Status</th>
+        </thead>
+        <tbody>
+            <% data.forEach(element => { %>
+                <% if (element.COMPLAINT_STATUS == 'resolved') { %>
+                    <tr>
+                        <td><%= element.ORDER_ID %> </td>
+                        <td><%= element.COMPLAINT_MESSAGE %></td>
+                        <td><%= element.COMPLAINT_STATUS %> </td>
+                    </tr>
+                <% } %>
+            <% }) %>
+        </tbody>
+    </table>
+</div> -->
+<%- include('partials/footer.ejs') -%>

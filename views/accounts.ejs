@@ -1,0 +1,141 @@
+<%- include('partials/admin-header.ejs') -%>
+
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg">
+                        
+                        
+<div class="container ">
+    <br>
+    <h4 >Active Accounts</h4>
+    <hr>
+    <table class="table table-dark">
+        <thead>
+            <th>Username</th>
+            <th>Email Address</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Phone Number</th>
+            <th>Account Status</th>
+            <th>Action</th>
+        </thead>
+        <tbody>
+            <% for(let i=0; i<data.length; i++) { %>
+                <% if (data[i]['USER_STATUS'] == 'active') { %>
+                    <tr>
+                        <td><%= data[i]['USERNAME'] %></td>
+                        <td><%= data[i]['EMAIL_ADDRESS'] %></td>
+                        <td><%= data[i]['FIRST_NAME'] %></td>
+                        <td><%= data[i]['LAST_NAME'] %></td>
+                        <td><%= data[i]['PHONE_NUMBER'] %></td>
+                        <td><%= data[i]['USER_STATUS'] %> </td>
+                        <td><a href="/admin/manage-accounts/block-account/<%= data[i]['USERNAME'] %>" class="btn btn-outline-danger btn-sm">Click Here to Block Account</a></td>
+                    </tr>
+                <% } %>
+            <% } %>
+        </tbody>
+    </table>
+
+    <br>
+    <h4>Blocked Accounts</h4>
+    <hr>
+    <table class="table table-dark">
+        <thead>
+            <th>Username</th>
+            <th>Email Address</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Phone Number</th>
+            <th>Account Status</th>
+            <th>Action</th>
+        </thead>
+        <tbody>
+            <% for(let i=0; i<data.length; i++) { %>
+                <% if (data[i]['USER_STATUS'] == 'blocked') { %>
+                    <tr>
+                        <td><%= data[i]['USERNAME'] %></td>
+                        <td><%= data[i]['EMAIL_ADDRESS'] %></td>
+                        <td><%= data[i]['FIRST_NAME'] %></td>
+                        <td><%= data[i]['LAST_NAME'] %></td>
+                        <td><%= data[i]['PHONE_NUMBER'] %></td>
+                        <td><%= data[i]['USER_STATUS'] %> </td>
+                        <td><a href="/admin/manage-accounts/unblock-account/<%= data[i]['USERNAME'] %>" class="btn btn-outline-primary btn-sm">Click Here to Unblock Account</a></td>
+                    </tr>
+                <% } %>
+            <% } %>
+        </tbody>
+    </table>
+</div>
+                        <!-- <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+<!-- 
+<div class="container ">
+    <br>
+    <h4 class="text-center">Active Accounts</h4>
+    <hr>
+    <table class="table">
+        <thead>
+            <th>Username</th>
+            <th>Email Address</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Phone Number</th>
+            <th>Account Status</th>
+            <th>Action</th>
+        </thead>
+        <tbody>
+            <% for(let i=0; i<data.length; i++) { %>
+                <% if (data[i]['USER_STATUS'] == 'active') { %>
+                    <tr>
+                        <td><%= data[i]['USERNAME'] %></td>
+                        <td><%= data[i]['EMAIL_ADDRESS'] %></td>
+                        <td><%= data[i]['FIRST_NAME'] %></td>
+                        <td><%= data[i]['LAST_NAME'] %></td>
+                        <td><%= data[i]['PHONE_NUMBER'] %></td>
+                        <td><%= data[i]['USER_STATUS'] %> </td>
+                        <td><a href="/admin/manage-accounts/block-account/<%= data[i]['USERNAME'] %>" class="btn btn-outline-primary btn-sm">Click Here to Block Account</a></td>
+                    </tr>
+                <% } %>
+            <% } %>
+        </tbody>
+    </table>
+
+    <br>
+    <h4>Blocked Accounts</h4>
+    <hr>
+    <table class="table">
+        <thead>
+            <th>Username</th>
+            <th>Email Address</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Phone Number</th>
+            <th>Account Status</th>
+            <th>Action</th>
+        </thead>
+        <tbody>
+            <% for(let i=0; i<data.length; i++) { %>
+                <% if (data[i]['USER_STATUS'] == 'blocked') { %>
+                    <tr>
+                        <td><%= data[i]['USERNAME'] %></td>
+                        <td><%= data[i]['EMAIL_ADDRESS'] %></td>
+                        <td><%= data[i]['FIRST_NAME'] %></td>
+                        <td><%= data[i]['LAST_NAME'] %></td>
+                        <td><%= data[i]['PHONE_NUMBER'] %></td>
+                        <td><%= data[i]['USER_STATUS'] %> </td>
+                        <td><a href="/admin/manage-accounts/unblock-account/<%= data[i]['USERNAME'] %>" class="btn btn-outline-primary btn-sm">Click Here to Unblock Account</a></td>
+                    </tr>
+                <% } %>
+            <% } %>
+        </tbody>
+    </table>
+</div> -->
+<%- include('partials/footer.ejs') -%>

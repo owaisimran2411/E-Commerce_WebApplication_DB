@@ -1,0 +1,29 @@
+<%- include('partials/header.ejs') -%> 
+<div class="container text-center">
+    <br>
+    <h1>ORDER DETAILS</h1>
+    <hr>
+    <table class="table  table-dark">
+        <thead>
+            <th>Product ID</th>
+            <th>Product Name</th>
+            <th>Product Price</th>
+            <th>Product Quantity</th>
+            <th>Product Total Price</th>
+        </thead>
+        <% orderData.forEach(element => { %>
+            <tr>
+                <td><%= element.PRODUCT_ID %> </td>
+                <td><%= element.PRODUCT_NAME %> </td>
+                <td>Rs. <%= element.PRODUCT_INDIVIDUAL_PRICE %> </td>
+                <td><%= element.PRODUCT_QUANTITY %> </td>
+                <td>Rs. <%= element.PRODUCT_TOTAL_PRICE %> </td>
+            </tr>
+        <% }) %>
+    </table>
+
+    <h5>Total Bill: Rs. <%= orderData[0].ORDER_AMOUNT %> </h5>
+    <hr>
+    <a href="/register-complaint/<%= orderData[0].ORDER_ID %> " class="btn btn-lg btn-outline-danger">Click here to register complaint</a>
+</div>
+<%- include('partials/footer.ejs') -%> 

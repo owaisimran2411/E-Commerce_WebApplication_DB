@@ -1,0 +1,63 @@
+<%- include('partials/header.ejs') -%> 
+    <section>
+        <br>
+        <div class="container text-center">
+            <h1>INTERNAL ORDERS</h1>
+            <hr>
+            <h3>Active Orders</h3>
+            <br>
+            <table class="table table-dark">
+                <thead>
+                    <th>Order Id</th>
+                    <th>Order Amount</th>
+                    <th>Time Stamp</th>
+                    <th>Order Status</th>
+                    <th>Order Details</th>
+                </thead>
+                <tbody>
+                    <% orderData.forEach(element => { %>
+                        <% if (element.ORDER_STATUS === 'confirm') { %>
+                            <tr>
+                                <td><%= element.ORDER_ID %></td>
+                                <td>Rs. <%= element.ORDER_AMOUNT %></td>
+                                <td><%= element.ORDER_DATE %></td>
+                                <td><%= element.ORDER_STATUS %> </td>
+                                <td>
+                                    <a class="btn btn-sm btn-primary" role="button" href="/view-my-orders/<%= element.CUSTOMER_NAME %>/<%= element.ORDER_ID %>">Click Here For Details</a>
+                                </td>
+                            </tr>
+                        <% } %>
+                    <% }) %>
+                </tbody>
+            </table>
+            <hr>
+            <h3>Completed Orders</h3>
+            <br>
+            <table class="table table-dark">
+                <thead>
+                    <th>Order Id</th>
+                    <th>Order Amount</th>
+                    <th>Time Stamp</th>
+                    <th>Order Status</th>
+                    <th>Order Details</th>
+                </thead>
+                <tbody>
+                    <% orderData.forEach(element => { %>
+                        <% if (element.ORDER_STATUS === 'completed') { %>
+                            <tr>
+                                <td><%= element.ORDER_ID %></td>
+                                <td>Rs. <%= element.ORDER_AMOUNT %></td>
+                                <td><%= element.ORDER_DATE %></td>
+                                <td><%= element.ORDER_STATUS %> </td>
+                                <td>
+                                    <a class="btn btn-sm btn-primary" href="/view-my-orders/<%= element.CUSTOMER_NAME %>/<%= element.ORDER_ID %> ">Click Here For Details</a>
+                                </td>
+                            </tr>
+                        <% } %>
+                    <% }) %>
+                </tbody>
+            </table>
+            <hr>
+        </div>
+    </section>
+<%- include('partials/footer.ejs') -%> 

@@ -1,0 +1,71 @@
+<%- include('partials/admin-header.ejs') -%> 
+
+<!-- <div id="page-content-wrapper"> -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10">
+                <h1>Order Details</h1><hr>
+                
+            <!-- <div class="container"> -->
+                <br>
+                <div class="text-center">
+                    <h3>Order ID: <%= data[0].ORDER_ID %> </h3>
+                    <h3>Customer Name: <%= customerData[0].FIRST_NAME + " " + customerData[0].LAST_NAME %> </h3>
+                    <h3>Customer Contact: <%= customerData[0].PHONE_NUMBER %> </h3>
+                    <p><strong>Customer Address:</strong> <%= customerData[0].ADDRESS %> </p>
+                </div>
+                <br>
+                <table class="table table-responsive table-dark text-center" >
+                    <thead >
+                        <th>Product ID</th>
+                        <th>Product Name</th>
+                        <th>Product Price</th>
+                        <th>Product Quantity</th>
+                        <th>Product Total Price</th>
+                    </thead>
+                    <% data.forEach(element => { %>
+                        <tr>
+                            <td><%= element.PRODUCT_ID %> </td>
+                            <td><%= element.PRODUCT_NAME %> </td>
+                            <td>Rs. <%= element.PRODUCT_INDIVIDUAL_PRICE %> </td>
+                            <td><%= element.PRODUCT_QUANTITY %> </td>
+                            <td>Rs. <%= element.PRODUCT_TOTAL_PRICE %> </td>
+                        </tr>
+                    <% }) %>
+                </table>
+            </div>
+                <!-- <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a> -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 
+    <div class="container">
+        <br>
+        <div class="text-center">
+            <h3>Order ID: <%= data[0].ORDER_ID %> </h3>
+            <h3>Customer Name: <%= customerData[0].FIRST_NAME + " " + customerData[0].LAST_NAME %> </h3>
+            <h3>Customer Contact: <%= customerData[0].PHONE_NUMBER %> </h3>
+            <p><strong>Customer Address:</strong> <%= customerData[0].ADDRESS %> </p>
+        </div>
+        <br>
+        <table class="table text-center" >
+            <thead>
+                <th>Product ID</th>
+                <th>Product Name</th>
+                <th>Product Price</th>
+                <th>Product Quantity</th>
+                <th>Product Total Price</th>
+            </thead>
+            <% data.forEach(element => { %>
+                <tr>
+                    <td><%= element.PRODUCT_ID %> </td>
+                    <td><%= element.PRODUCT_NAME %> </td>
+                    <td>Rs. <%= element.PRODUCT_INDIVIDUAL_PRICE %> </td>
+                    <td><%= element.PRODUCT_QUANTITY %> </td>
+                    <td>Rs. <%= element.PRODUCT_TOTAL_PRICE %> </td>
+                </tr>
+            <% }) %>
+        </table>
+    </div> -->
+<%- include('partials/footer.ejs') -%> 

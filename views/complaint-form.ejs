@@ -1,0 +1,36 @@
+<%- include('partials/header.ejs') -%> 
+<div class="container">
+    <br>
+    <div class="form-group">
+        <form method="POST">
+            <h1 class="text-center">Register New Complaint</h1>
+            <label>Order ID</label>
+            <input type="number" value="<%= orderID %>" readonly class="form-control" name="orderID">
+            
+            <label>Complaint Message</label>
+            <textarea name="message" id="wordCount" class="form-control" required placeholder="enter your message here" onkeypress="countWords()" maxlength="1000"></textarea>
+            <p class="text-right" id="counter">0/1000</p>
+            <br>
+            <div class="text-center">
+                <button class="btn btn-outline-primary btn-lg" type="submit">Register Complaint</button>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    $('document').ready(function() {
+           $('#btn').click(function(){
+               alert('Complain has been registered.Thank you.')
+           })
+       })           
+</script>
+<script type="text/javascript">
+    function countWords() {
+        var element = document.getElementById('wordCount')
+        var count = document.getElementById('counter')
+        
+        console.log(element.value.length);
+        count.innerHTML = element.value.length + 1 + "/1000"
+    }
+</script>
+<%- include('partials/footer.ejs') -%> 

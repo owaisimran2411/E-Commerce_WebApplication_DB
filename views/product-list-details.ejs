@@ -1,0 +1,75 @@
+<%- include('partials/header.ejs') -%>
+
+
+    <div class="container text-center">
+        <br>
+        <div class="jumbotron" style="padding-top: 5%;
+        padding-bottom: 5%; width:10;">
+            <h1 class="display- text-center"><%= data.PRODUCT_NAME %> </h1>
+            <p class="lead"><%= data.PRODUCT_DESCRIPTION %></p>
+            <hr>
+            <h1 class="display-">Rs. <%= data.PRODUCT_PRICE %> </h1> 
+            <br>           
+            <div class="p1">
+                <div class="stars-outer">
+                    <div class="stars-inner"></div>
+                </div>
+            </div>
+            <br>
+            <br>
+            <a href="/add-to-cart/<%= data.PRODUCT_ID %>" class="btn btn-outline-success">Add To Cart</a>
+            <br>
+            <input type="number" value="<%= data.PRODUCT_RATING %>" id="ratings" readonly hidden>
+            <div class="text-center">
+                <form method="POST" action="/rate-product/<%= data.PRODUCT_ID %> ">
+                    <p id="login" onmouseover="showForm();" onmouseout="hideForm();">     
+                        <br>
+                        <span class="label">Hover Here to Rate</span>       
+                        <span id="loginForm">        
+                            <br>
+                            <span class="form-elements">
+                                <span class="form-label">Enter your rating:</span>
+                                <br>
+                                <span class="form-field"><input type="number" required min="0" max="5" name="ratings"/></span>                        
+                            </span>      
+                            <br>
+                            <br>
+                            <span class="form-elements">
+                                <span><input class="btn btn-outline-primary" type="submit" value="Submit" /></span>     
+                            </span>
+                        
+                        </span>          
+                    </p>
+                    </form>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <script>
+        
+        const ratings = {
+            p1 : document.getElementById('ratings').value
+            };
+            // total number of stars
+            const starTotal = 5;
+
+            
+            
+            const starPercentage = (ratings['p1']/starTotal)*100
+            
+            const starPercentageRounded = `${(Math.round(starPercentage / 10) * 10)}%`;
+            
+            document.querySelector(`.p1 .stars-inner`).style.width = starPercentageRounded; 
+            
+            function showForm(){
+                document.getElementById('loginForm').style.display = "block";
+            }
+
+            function hideForm(){
+                document.getElementById('loginForm').style.display = "none";
+            }
+
+    </script>
+<%- include('partials/footer.ejs') -%>

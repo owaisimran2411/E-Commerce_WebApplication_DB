@@ -1,0 +1,71 @@
+<%- include('partials/admin-header.ejs') -%>
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2>Posted Products </h2><hr>
+                        <div class="row">
+                                <div ></div>
+                                    
+                            <% data.forEach(element => { %>
+                                <div class="col-lg-12">
+                                    <div class="card text-center">
+                                        <div class="card-body">
+                                            <h5 class="card-title"><%= element.PRODUCT_NAME %></h5>
+                                            <p class="card-text"><%= element.PRODUCT_DESCRIPTION %> </p>  
+                                            <br>
+                                            <p class="card-text">category: <%= element.PRODUCT_TYPE %> </p>
+                                            <p class="card-text">Posted By: <%= element.POSTED_BY %> </p>
+                                            <p class="card-text">Ratings: <%= element.PRODUCT_RATING %>/5 </p>
+                                            <h6 class="card-text">Price:Rs <%= element.PRODUCT_PRICE %> </h6>
+                                            <a href="/admin/add-new-product/<%= element.PRODUCT_ID %>/edit" class="btn btn-outline-warning btn-sm">Edit Product</a>
+                                            <a href="/admin/add-new-product/<%= element.PRODUCT_ID %>/remove" class="btn btn-outline-danger btn-sm">Remove Product</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            <% }) %>
+                        
+                                </div>
+                        <!-- <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+<br>
+<div class="container-fluid">
+    <br>
+    
+    <!-- <div class="row">
+    
+        <% data.forEach(element => { %>
+            <div class="col-lg-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= element.PRODUCT_NAME %></h5>
+                        <p class="card-text"><%= element.PRODUCT_DESCRIPTION %> </p>  
+                        <br>
+                        <p class="card-text">category: <%= element.PRODUCT_TYPE %> </p>
+                        <p class="card-text">Posted By: <%= element.POSTED_BY %> </p>
+                        <p class="card-text">Ratings: <%= element.PRODUCT_RATING %>/5 </p>
+                        <h6 class="card-text">Price: <%= element.PRODUCT_PRICE %> </h6>
+                        <a href="/admin/add-new-product/<%= element.PRODUCT_ID %>/edit" class="btn btn-outline-warning btn-sm">Edit Product</a>
+                        <a href="/admin/add-new-product/<%= element.PRODUCT_ID %>/remove" class="btn btn-outline-danger btn-sm">Remove Product</a>
+                    </div>
+                </div>
+            </div>
+        <% }) %>
+     -->
+    </div>
+    <!-- <div class="card" style="width: 18rem;"> -->
+        <!-- <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div> -->
+</div>
+<%- include('partials/footer.ejs') -%>

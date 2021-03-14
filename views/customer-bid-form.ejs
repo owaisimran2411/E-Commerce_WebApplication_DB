@@ -1,0 +1,41 @@
+<%- include('partials/header.ejs') -%>
+    <div class="container">
+        <br>
+    <div class="form-group">
+        <form method="POST">
+            <h1 class="text-center">CREATE NEW BID</h1>
+
+            <label>Product Name</label>
+            <input type="text" name="productName" class="form-control" value="<%= productData.PRODUCT_NAME %>" readonly>
+
+            <label>Product Description</label>
+            <textarea name="productDescription" class="form-control" readonly><%= productData.PRODUCT_DESCRIPTION %> </textarea>
+
+            <label>Product Type</label>
+            <input type="text" name="productType" class="form-control" value="<%= productData.PRODUCT_TYPE %> " readonly>
+
+            <label>Product Asking Price</label>
+            <input type="number" name="productAskingPrice" class="form-control" value="<%= productData.PRODUCT_PRICE %>" readonly>
+
+            <label>Product Bid Price</label>
+            <input type="number" name="productBidPrice" class="form-control" required>
+
+            <label>Your username</label>
+            <input type="text" name="buyerUsername" class="form-control" value="<%= loginID %>" readonly>
+
+            <br>
+            <div class="text-center">
+                <button class="btn btn-outline-primary btn-lg" type="submit">Create Bid</button>
+            </div>
+        </form>
+    </div>
+    </div>
+
+    <script>
+        $('document').ready(function() {
+               $('#btn').click(function(){
+                   alert('Thank you for your interest in our product')
+               })
+           })           
+   </script>
+<%- include('partials/footer.ejs') -%>
